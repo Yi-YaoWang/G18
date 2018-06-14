@@ -33,15 +33,6 @@ public class ClientThreadCode extends Thread
             if (m_socket != null)//連線成功才繼續往下執行
             {
             	System.out.println("連線成功");
-            	JFrame atm = new JFrame("ATM");
-            	atm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     	       	atm.setResizable(false);
-     	       	atm.setLayout(new BorderLayout());
-     	       	atm.add(new ATM(), BorderLayout.CENTER);
-     	       	atm.pack();
-     	       	atm.setLocationRelativeTo(null);
-     	       	atm.setVisible(true);
-                
                 PrintStream writer = new PrintStream(m_socket.getOutputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(m_socket.getInputStream()));
             	

@@ -12,43 +12,43 @@ import java.util.Scanner;
 
 public class ServerThreadCode extends Thread
 {
-    private ServerSocket m_serverSocket;//¦øªA¾¹ºİªºSocket¡A±µ¦¬Clientºİªº³s½u
-    private Socket m_socket;//Server©MClient¤§¶¡ªº³s½u³q¹D
+    private ServerSocket m_serverSocket;//ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½İªï¿½Socketï¿½Aï¿½ï¿½ï¿½ï¿½Clientï¿½İªï¿½ï¿½sï¿½u
+    private Socket m_socket;//Serverï¿½MClientï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½uï¿½qï¿½D
     
     public ServerThreadCode(int port)
     {
         try
         {
-            m_serverSocket = new ServerSocket(port);//«Ø¥ß¦øªA¾¹ºİªºSocket¡A¨Ã¥B³]©wPort
+            m_serverSocket = new ServerSocket(8000);//ï¿½Ø¥ß¦ï¿½ï¿½Aï¿½ï¿½ï¿½İªï¿½Socketï¿½Aï¿½Ã¥Bï¿½]ï¿½wPort
         }
         catch (IOException e)
         {
-            System.out.println(e.getMessage());//¥X²{¨Ò¥~®É¡A®·®»¨ÃÅã¥Ü¨Ò¥~°T®§
+            System.out.println(e.getMessage());//ï¿½Xï¿½{ï¿½Ò¥~ï¿½É¡Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¨Ò¥~ï¿½Tï¿½ï¿½
         }
     }
     
     @Override
-    public void run()//ÂĞ¼gThread¤ºªºrun()¤èªk
+    public void run()//ï¿½Ğ¼gThreadï¿½ï¿½ï¿½ï¿½run()ï¿½ï¿½k
     {
     	
         try
         {
-            System.out.println("µ¥«İ³s½u......");
-           m_socket = m_serverSocket.accept();//µ¥«İ¦øªA¾¹ºİªº³s½u¡A­Y¥¼³s½u«hµ{¦¡¤@ª½°±¦b³o¸Ì
-            System.out.println("³s½u¦¨¥\¡I");
+            System.out.println("ç­‰å¾…é€£ç·š......");
+            m_socket = m_serverSocket.accept();//ï¿½ï¿½ï¿½İ¦ï¿½ï¿½Aï¿½ï¿½ï¿½İªï¿½ï¿½sï¿½uï¿½Aï¿½Yï¿½ï¿½ï¿½sï¿½uï¿½hï¿½{ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½oï¿½ï¿½
+            System.out.println("é€£ç·šæˆåŠŸ");
             
-            m_serverSocket.close();//¤@¥¹³s½u«Ø¥ß¦¨¥\¡A¥B¤£»İ­n¦A±µ¦¬¨ä¥L³s½u¡A«h¥iÃö³¬ServerSocket
+            m_serverSocket.close();//ï¿½@ï¿½ï¿½ï¿½sï¿½uï¿½Ø¥ß¦ï¿½ï¿½\ï¿½Aï¿½Bï¿½ï¿½ï¿½İ­nï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½sï¿½uï¿½Aï¿½hï¿½iï¿½ï¿½ï¿½ï¿½ServerSocket
             
-            //°e¥Xºİªº½s¼g¥²¶·©M±µ¦¬ºİªº±µ¦¬Class¬Û¦P
-            //¨Ï¥ÎSocketªºgetInputStream()©MgetOutputStream()¶i¦æ±µ¦¬©Mµo°e¸ê®Æ
-            //·Q­n¼g¤J¦r¦ê¥i¥H¥Î PrintStream¡F·Q­n§â¦UºØ°ò¥»¸ê®Æ«¬ºA¡A¦p int, double...µ¥ªº "­È" ¿é¥X¡A¥i¥H¥Î DataOutputStream¡F·Q­n§â¾ã­Óª«¥ó Serialize¡A«h¥i¥H¥Î ObjectOutputStream¡C
-            PrintStream writer;//¦b¦¹§Ú¨Ï¥ÎPrintStream±N¦r¦ê¶i¦æ½s¼g©M°e¥X
-            BufferedReader reader;//¦b¦¹§Ú¨Ï¥ÎBufferedReader±N¸ê®Æ¶i¦æ±µ¦¬©MÅª¨ú
+            //ï¿½eï¿½Xï¿½İªï¿½ï¿½sï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½ï¿½İªï¿½ï¿½ï¿½ï¿½ï¿½Classï¿½Û¦P
+            //ï¿½Ï¥ï¿½Socketï¿½ï¿½getInputStream()ï¿½MgetOutputStream()ï¿½iï¿½æ±µï¿½ï¿½ï¿½Mï¿½oï¿½eï¿½ï¿½ï¿½
+            //ï¿½Qï¿½nï¿½gï¿½Jï¿½rï¿½ï¿½iï¿½Hï¿½ï¿½ PrintStreamï¿½Fï¿½Qï¿½nï¿½ï¿½Uï¿½Ø°ò¥»¸ï¿½Æ«ï¿½ï¿½Aï¿½Aï¿½p int, double...ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½" ï¿½ï¿½Xï¿½Aï¿½iï¿½Hï¿½ï¿½ DataOutputStreamï¿½Fï¿½Qï¿½nï¿½ï¿½ï¿½Óªï¿½ï¿½ï¿½ Serializeï¿½Aï¿½hï¿½iï¿½Hï¿½ï¿½ ObjectOutputStreamï¿½C
+            PrintStream writer;//ï¿½bï¿½ï¿½ï¿½Ú¨Ï¥ï¿½PrintStreamï¿½Nï¿½rï¿½ï¿½iï¿½ï¿½sï¿½gï¿½Mï¿½eï¿½X
+            BufferedReader reader;//ï¿½bï¿½ï¿½ï¿½Ú¨Ï¥ï¿½BufferedReaderï¿½Nï¿½ï¿½Æ¶iï¿½æ±µï¿½ï¿½ï¿½MÅªï¿½ï¿½
             
-            writer = new PrintStream(m_socket.getOutputStream());//¥Ñ©ó¬O±N¸ê®Æ½s¼g¨Ã°e¥X¡A©Ò¥H¬OOutput
+            writer = new PrintStream(m_socket.getOutputStream());//ï¿½Ñ©ï¿½Oï¿½Nï¿½ï¿½Æ½sï¿½gï¿½Ã°eï¿½Xï¿½Aï¿½Ò¥Hï¿½OOutput
 
-            //BufferedReader¦b«Øºc®É±µ¨ü¤@­ÓReaderª«¥ó¡A¦bÅª¨ú¼Ğ·Ç¿é¤J¦ê¬y®É¡A·|¨Ï¥ÎInputStreamReader¡A¥¦Ä~©Ó¤FReaderÃş§O
-            reader = new BufferedReader(new InputStreamReader(m_socket.getInputStream()));//±µ¦¬¶Ç¶i¨Óªº¸ê®Æ¡A©Ò¥H¬OInput
+            //BufferedReaderï¿½bï¿½Øºcï¿½É±ï¿½ï¿½ï¿½ï¿½@ï¿½ï¿½Readerï¿½ï¿½ï¿½ï¿½Aï¿½bÅªï¿½ï¿½ï¿½Ğ·Ç¿ï¿½Jï¿½ï¿½yï¿½É¡Aï¿½|ï¿½Ï¥ï¿½InputStreamReaderï¿½Aï¿½ï¿½ï¿½~ï¿½Ó¤FReaderï¿½ï¿½ï¿½O
+            reader = new BufferedReader(new InputStreamReader(m_socket.getInputStream()));//ï¿½ï¿½ï¿½ï¿½ï¿½Ç¶iï¿½Óªï¿½ï¿½ï¿½Æ¡Aï¿½Ò¥Hï¿½OInput
             
             
             Scanner sc=new Scanner(System.in);
@@ -56,9 +56,9 @@ public class ServerThreadCode extends Thread
             while(true) {
             	
             	String str=sc.next();
-                writer.println(  str);//±N¸ê®Æ½s¼g¶i¦ê¬y¤º
+                writer.println(  str);//ï¿½Nï¿½ï¿½Æ½sï¿½gï¿½iï¿½ï¿½yï¿½ï¿½
                 System.out.println(reader.readLine());
-                writer.flush();//²MªÅ½w½Ä°Ï¨Ã°e¥X¸ê®Æ
+                writer.flush();//ï¿½Mï¿½Å½wï¿½Ä°Ï¨Ã°eï¿½Xï¿½ï¿½ï¿½
             
             
            
@@ -66,11 +66,11 @@ public class ServerThreadCode extends Thread
         	
         }
             
-           // m_socket.close();//Ãö³¬³s½u
+           // m_socket.close();//ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½u
         }
         catch (IOException e)
         {
-            System.out.println(e.getMessage());//¥X²{¨Ò¥~®É¡A®·®»¨ÃÅã¥Ü¨Ò¥~°T®§(³s½u¦¨¥\¤£·|¥X²{¨Ò¥~)
+            System.out.println(e.getMessage());//ï¿½Xï¿½{ï¿½Ò¥~ï¿½É¡Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¨Ò¥~ï¿½Tï¿½ï¿½(ï¿½sï¿½uï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½|ï¿½Xï¿½{ï¿½Ò¥~)
         }
     }
 }

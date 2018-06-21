@@ -1,23 +1,14 @@
 package Client;
 
-import java.awt.BorderLayout;
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-
-public class ClientCode {
-	public static void main(String[] argv) {
-		String ip = " ";
-		Scanner scan = new Scanner(System.in);
-		// ip = scan.nextLine();
-		JFrame login = new JFrame("ATM");
-		login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		login.setResizable(false);
-		login.setLayout(new BorderLayout());
-		login.add(new Login(), BorderLayout.CENTER);
-		login.pack();
-		login.setLocationRelativeTo(null);
-		login.setVisible(true);
-		// new ClientThreadCode(ip, 8000).start();//«Ø¥ßª«¥ó¡A¶Ç¤JIP©MPort¨Ã°õ¦æµ¥«İ±µ¨ü³s½uªº°Ê§@
-	}
+public class ClientCode
+{
+    public static void main(String[] argv)
+    {	
+    	String ip = " ";
+    	Scanner scan = new Scanner(System.in);
+    	ip = scan.nextLine();
+        new ClientThreadCode(ip, 8000).start();//å»ºç«‹ç‰©ä»¶ï¼Œå‚³å…¥IPå’ŒPortä¸¦åŸ·è¡Œç­‰å¾…æ¥å—é€£ç·šçš„å‹•ä½œ
+    }
 }

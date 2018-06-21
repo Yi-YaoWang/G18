@@ -4,6 +4,6 @@ public class ServerCode
 {
     public static void main(String[] argv)
     {
-        new ServerThreadCode(8000).start();//«Ø¥ßª«¥ó¡A¶Ç¤JPort¨Ã°õ¦æµ¥«İ±µ¨ü³s½uªº°Ê§@
+        new ServerThreadCode(8000).start();//å»ºç«‹ç‰©ä»¶ï¼Œå‚³å…¥Portä¸¦åŸ·è¡Œç­‰å¾…æ¥å—é€£ç·šçš„å‹•ä½œ
     }
 }

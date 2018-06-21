@@ -25,6 +25,7 @@ public class Login extends JPanel implements ActionListener {
 	
     private GridBagLayout layout;
     private GridBagConstraints gbc;
+    
     private JButton[] numButtons;
     private JButton[] opButtons;
     
@@ -115,20 +116,12 @@ public class Login extends JPanel implements ActionListener {
 		}
 		
 		if(e.getSource() == opButtons[0] ){
-			ip = field.getText();
-			System.out.printf(ip);
-			new ClientThreadCode(ip, 8000).start();
+			num1 = Double.parseDouble(field.getText());
+			field.setText("");
 		}else if(e.getSource() == opButtons[1]){
 			field.setText("");
-		}
-		else if(e.getSource() == opButtons[2]){
+		}else if(e.getSource() == opButtons[2]){
 			field.setText(field.getText()+ ".");
 		}
-	}
-
-	public void actionListener(ActionEvent e) {
-		
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -35,7 +35,7 @@ public class MyTest {
 		stat.executeUpdate(sql);
 	}
 	
-	  //新增
+	//新增
 	public void insert(Connection con,int amount,String depex,int balance)throws SQLException{
 		String sql = "insert into test (amount,depex,balance) values(?,?,?)";
 		PreparedStatement pst = null;
@@ -69,7 +69,7 @@ public class MyTest {
         test.insert(con, 1500, "取", 500);
         test.insert(con, 3500, "存", 4000);
         
-        //查詢顯示資料*/
+        //查詢顯示資料
         System.out.println("金額:  存/取:    餘額:");
         test.selectAll(con);
         

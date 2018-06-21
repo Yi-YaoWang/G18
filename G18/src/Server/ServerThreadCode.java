@@ -12,43 +12,44 @@ import java.util.Scanner;
 
 public class ServerThreadCode extends Thread
 {
-    private ServerSocket m_serverSocket;//���A���ݪ�Socket�A����Client�ݪ��s�u
-    private Socket m_socket;//Server�MClient�������s�u�q�D
+    private ServerSocket m_serverSocket;//伺服器端的Socket，接收Client端的連線
+    private Socket m_socket;////Server和Client之間的連線通道
     
     public ServerThreadCode(int port)
     {
         try
         {
-            m_serverSocket = new ServerSocket(8000);//�إߦ��A���ݪ�Socket�A�åB�]�wPort
+            m_serverSocket = new ServerSocket(port);//建立伺服器端的Socket，並且設定Port
         }
         catch (IOException e)
         {
-            System.out.println(e.getMessage());//�X�{�ҥ~�ɡA��������ܨҥ~�T��
+            System.out.println(e.getMessage());//出現例外時，捕捉並顯示例外訊息
         }
     }
     
     @Override
-    public void run()//�мgThread����run()��k
+    public void run()//覆寫Thread內的run()方法
     {
     	
         try
         {
             System.out.println("等待連線......");
-            m_socket = m_serverSocket.accept();//���ݦ��A���ݪ��s�u�A�Y���s�u�h�{���@�����b�o��
-            System.out.println("連線成功");
+           m_socket = m_serverSocket.accept();//等待伺服器端的連線，若未連線則程式一直停在這裡
+            System.out.println("連線成功！");
             
-            m_serverSocket.close();//�@���s�u�إߦ��\�A�B���ݭn�A������L�s�u�A�h�i����ServerSocket
+            m_serverSocket.close();//一旦連線建立成功，且不需要再接收其他連線，則可關閉ServerSocket
             
-            //�e�X�ݪ��s�g�����M�����ݪ�����Class�ۦP
-            //�ϥ�Socket��getInputStream()�MgetOutputStream()�i�汵���M�o�e���
-            //�Q�n�g�J�r��i�H�� PrintStream�F�Q�n��U�ذ򥻸�ƫ��A�A�p int, double...���� "��" ��X�A�i�H�� DataOutputStream�F�Q�n���Ӫ��� Serialize�A�h�i�H�� ObjectOutputStream�C
-            PrintStream writer;//�b���ڨϥ�PrintStream�N�r��i��s�g�M�e�X
-            BufferedReader reader;//�b���ڨϥ�BufferedReader�N��ƶi�汵���MŪ��
-            
-            writer = new PrintStream(m_socket.getOutputStream());//�ѩ�O�N��ƽs�g�ðe�X�A�ҥH�OOutput
 
-            //BufferedReader�b�غc�ɱ����@��Reader����A�bŪ���зǿ�J��y�ɡA�|�ϥ�InputStreamReader�A���~�ӤFReader���O
-            reader = new BufferedReader(new InputStreamReader(m_socket.getInputStream()));//�����Ƕi�Ӫ���ơA�ҥH�OInput
+            //送出端的編寫必須和接收端的接收Class相同
+            //使用Socket的getInputStream()和getOutputStream()進行接收和發送資料
+            //想要寫入字串可以用 PrintStream；想要把各種基本資料型態，如 int, double...等的 "值" 輸出，可以用 DataOutputStream；想要把整個物件 Serialize，則可以用 ObjectOutputStream。
+            PrintStream writer;//在此我使用PrintStream將字串進行編寫和送出
+            BufferedReader reader;//在此我使用BufferedReader將資料進行接收和讀取
+            
+            writer = new PrintStream(m_socket.getOutputStream());//由於是將資料編寫並送出，所以是Output
+
+            //BufferedReader在建構時接受一個Reader物件，在讀取標準輸入串流時，會使用InputStreamReader，它繼承了Reader類別
+            reader = new BufferedReader(new InputStreamReader(m_socket.getInputStream()));//接收傳進來的資料，所以是Input
             
             
             Scanner sc=new Scanner(System.in);
@@ -56,9 +57,9 @@ public class ServerThreadCode extends Thread
             while(true) {
             	
             	String str=sc.next();
-                writer.println(  str);//�N��ƽs�g�i��y��
+                writer.println(  str);//將資料編寫進串流內
                 System.out.println(reader.readLine());
-                writer.flush();//�M�Žw�İϨðe�X���
+                writer.flush();//清空緩衝區並送出資料
             
             
            
@@ -66,11 +67,11 @@ public class ServerThreadCode extends Thread
         	
         }
             
-           // m_socket.close();//�����s�u
+           // m_socket.close();//關閉連線
         }
         catch (IOException e)
         {
-            System.out.println(e.getMessage());//�X�{�ҥ~�ɡA��������ܨҥ~�T��(�s�u���\���|�X�{�ҥ~)
+            System.out.println(e.getMessage());//出現例外時，捕捉並顯示例外訊息(連線成功不會出現例外)
         }
     }
 }

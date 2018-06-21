@@ -12,13 +12,13 @@ import javax.swing.JFrame;
 
 public class ClientThreadCode extends Thread
 {
-    private Socket m_socket;//©M¦øªA¾¹ºİ¶i¦æ³s½u
+    private Socket m_socket;//å’Œä¼ºæœå™¨ç«¯é€²è¡Œé€£ç·š
     
     public ClientThreadCode(String ip, int port)
     {
         try
         {
-            m_socket = new Socket(ip, port);//«Ø¥ß³s½u¡C(ip¬°¦øªA¾¹ºİªºip¡Aport¬°¦øªA¾¹ºİ¶}±Òªºport)
+            m_socket = new Socket(ip, port);//å»ºç«‹é€£ç·šã€‚(ipç‚ºä¼ºæœå™¨ç«¯çš„ipï¼Œportç‚ºä¼ºæœå™¨ç«¯é–‹å•Ÿçš„port)
         }
         catch (IOException e)
         {
@@ -30,9 +30,9 @@ public class ClientThreadCode extends Thread
     {
         try
         {
-            if (m_socket != null)//³s½u¦¨¥\¤~Ä~Äò©¹¤U°õ¦æ
+            if (m_socket != null)//é€£ç·šæˆåŠŸæ‰ç¹¼çºŒå¾€ä¸‹åŸ·è¡Œ
             {
-            	System.out.println("³s½u¦¨¥\");
+            	System.out.println("é€£ç·šæˆåŠŸ");
                 PrintStream writer = new PrintStream(m_socket.getOutputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(m_socket.getInputStream()));
             	

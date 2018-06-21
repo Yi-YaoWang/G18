@@ -12,13 +12,13 @@ import javax.swing.JFrame;
 
 public class ClientThreadCode extends Thread
 {
-    private Socket m_socket;//和伺服器端進行連線
+    private Socket m_socket;//�M���A���ݶi��s�u
     
     public ClientThreadCode(String ip, int port)
     {
         try
         {
-            m_socket = new Socket(ip, port);//建立連線。(ip為伺服器端的ip，port為伺服器端開啟的port)
+            m_socket = new Socket(ip, port);//�إ߳s�u�C(ip�����A���ݪ�ip�Aport�����A���ݶ}�Ҫ�port)
         }
         catch (IOException e)
         {
@@ -30,10 +30,10 @@ public class ClientThreadCode extends Thread
     {
         try
         {
-            if (m_socket != null)//連線成功才繼續往下執行
+            if (m_socket != null)//�s�u���\�~�~�򩹤U����
             {
             	System.out.println("連線成功");
-                PrintStream writer = new PrintStream(m_socket.getOutputStream());
+                /*PrintStream writer = new PrintStream(m_socket.getOutputStream());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(m_socket.getInputStream()));
             	
                 Scanner scan = new Scanner(System.in);
@@ -43,11 +43,21 @@ public class ClientThreadCode extends Thread
                 	writer.println(str);
                 	//System.out.println("Server:" + reader.readLine());
                     writer.flush();
-                }
+                }*/
+            	PrintStream writer = new PrintStream(m_socket.getOutputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(m_socket.getInputStream()));
+            
+                writer.println(ATM.num1);
+                writer.flush();
+                //System.out.println("Server:" + reader.readLine());
+                System.out.println("金額: "+ATM.num1);
+            
+                m_socket.close();
             }
         }
         catch (IOException e)
         {
+            System.out.println("A");
             System.out.println(e.getMessage());
         }
     }

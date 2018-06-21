@@ -53,7 +53,7 @@ public class ATM extends JPanel implements ActionListener {
    
     private JTextField field;
     
-	private double num1, answer;
+	public static double num1, answer;
 	private int op;
 	
     public ATM(){
@@ -131,7 +131,6 @@ public class ATM extends JPanel implements ActionListener {
 		if(e.getSource() == numButtons[10]){
 			field.setText(field.getText()+"00");
 		}
-		
 		if(e.getSource() == opButtons[0] ){
 			num1 = Double.parseDouble(field.getText());
 			field.setText("");

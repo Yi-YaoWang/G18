@@ -1,4 +1,4 @@
-# G18
+# G19
 A simple ATM system implement.
 
 This project require connection between client and master, client can deposit and withdraw money, master save each client money into database.
